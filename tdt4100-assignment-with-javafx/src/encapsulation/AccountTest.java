@@ -1,6 +1,7 @@
 package encapsulation;
 
 import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 public class AccountTest extends TestCase {
 
@@ -81,5 +82,9 @@ public class AccountTest extends TestCase {
 			assertEquals(100.0d, account.getBalance(), epsilon);
 			assertTrue(e instanceof IllegalArgumentException);
 		}
-	}
+    }
+    
+    public static void main(String[] args) {
+        TestRunner.run(AccountTest.class);
+    }
 }

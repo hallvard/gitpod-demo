@@ -1,16 +1,8 @@
 package encapsulation;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.function.Consumer;
-import java.util.function.UnaryOperator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-
 
 public class AccountController {
 	
