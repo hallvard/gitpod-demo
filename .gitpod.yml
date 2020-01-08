@@ -4,3 +4,7 @@ image:
 tasks:
   - init: sdk use java 12.0.2.j9-adpt
     command: cd tdt4100-assignment-with-javafx; mvn test
+
+ports:
+  # used by virtual desktop and vnc, supports JavaFX
+  - port: 6080
