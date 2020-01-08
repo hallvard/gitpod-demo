@@ -2,5 +2,5 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-  - init: sdk use java 13.0.1.j9-adpt
+  - init: sdk use java 12.0.2.j9-adpt
     command: cd tdt4100-assignment-with-javafx; mvn test
