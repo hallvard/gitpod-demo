@@ -61,7 +61,12 @@
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
-			<resource><directory>src</directory></resource>
+            <resource>
+                <directory>src</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                </includes>
+            </resource>
 		</resources>
 		<testSourceDirectory>src</testSourceDirectory>
 		<plugins>
