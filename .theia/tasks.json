@@ -6,21 +6,21 @@
       {
          "label": "run Account",
          "type": "shell",
-         "command": "cd tdt4100-assignment-with-javafx && mvn -DmainClass=encapsulation.Account exec:java",
+         "command": "cd tdt4100-assignment-with-javafx && mvn -PAccount exec:java",
          "group": "test",
          "problemMatcher": []
       },
       {
          "label": "run AccountApp",
          "type": "shell",
-         "command": "cd tdt4100-assignment-with-javafx && mvn -DmainClass=encapsulation.AccountApp exec:java",
+         "command": "cd tdt4100-assignment-with-javafx && mvn -PAccountApp exec:java",
          "group": "test",
          "problemMatcher": []
       },
       {
          "label": "test Account",
          "type": "shell",
-         "command": "cd tdt4100-assignment-with-javafx && mvn -Dtest=encapsulation.AccountTest test",
+         "command": "cd tdt4100-assignment-with-javafx && mvn -PAccount test",
          "group": "test",
          "problemMatcher": []
       }
