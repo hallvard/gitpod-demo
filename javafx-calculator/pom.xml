@@ -36,7 +36,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>calc.Calc</mainClass>
+                    <mainClass>calc.CalcApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>

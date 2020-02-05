@@ -3,26 +3,33 @@
   // Hover to view descriptions of existing attributes.
   "version": "0.2.0",
   "configurations": [
-   {
-      "type": "java",
-      "name": "CodeLens (Launch) - AccountApp",
-      "request": "launch",
-      "mainClass": "ovinger/encapsulation.AccountApp",
-      "projectName": "tdt4100-assignment-with-javafx"
-   },
-   {
-      "type": "java",
-      "name": "CodeLens (Launch) - AccountTest",
-      "request": "launch",
-      "mainClass": "ovinger/encapsulation.AccountTest",
-      "projectName": "tdt4100-assignment-with-javafx"
-   },
-   {
-      "type": "java",
-      "name": "CodeLens (Launch) - Account",
-      "request": "launch",
-      "mainClass": "ovinger/encapsulation.Account",
-      "projectName": "tdt4100-assignment-with-javafx"
-   },
+    {
+        "type": "java",
+        "name": "CodeLens (Launch) - CalcApp",
+        "request": "launch",
+        "mainClass": "calc/calc.CalcApp",
+        "projectName": "javafx-calculator"
+    },
+    {
+        "type": "java",
+        "name": "CodeLens (Launch) - AccountApp",
+        "request": "launch",
+        "mainClass": "ovinger/encapsulation.AccountApp",
+        "projectName": "tdt4100-assignment-with-javafx"
+    },
+    {
+        "type": "java",
+        "name": "CodeLens (Launch) - AccountTest",
+        "request": "launch",
+        "mainClass": "ovinger/encapsulation.AccountTest",
+        "projectName": "tdt4100-assignment-with-javafx"
+    },
+    {
+        "type": "java",
+        "name": "CodeLens (Launch) - Account",
+        "request": "launch",
+        "mainClass": "ovinger/encapsulation.Account",
+        "projectName": "tdt4100-assignment-with-javafx"
+    }
 ]
 }
