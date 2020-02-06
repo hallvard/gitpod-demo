@@ -1,7 +1,6 @@
 package calc;
 
 import java.util.function.BinaryOperator;
-import java.util.function.UnaryOperator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,6 +71,9 @@ public class CalcController {
 
     @FXML
     private void appendToOperandString(ActionEvent actionEvent) {
+        if (model.operand1 != null && model.operator == null) {
+            throw new IllegalStateException("cannot specify operand 2, before the operator");
+        }
         String label = getActionEventString(actionEvent);
         model.operandString += label;
         updateView();
@@ -91,9 +93,6 @@ public class CalcController {
             compute();
         }
         model.operator = operator;
-        if (getUnaryOperator(operator) != null) {
-            compute();
-        }
         model.operandString = "";
         updateView();
     }
@@ -109,36 +108,19 @@ public class CalcController {
         }
     }
 
-    private UnaryOperator<Double> getUnaryOperator(String operatorString) {
-    	switch (operatorString) {
-        case "sqrt": return n -> Math.sqrt(n);
-        default: return null;
-        }
-    }
-
     @FXML
     private void compute() {
-        UnaryOperator<Double> unaryOperator = getUnaryOperator(model.operator);
-        if (unaryOperator != null) {
-            if (model.operand1 == null) {
-                model.operand1 = getOperand(model.operandString);
-                model.operandString = "";
-            }
-            model.operand1 = unaryOperator.apply(model.operand1);
-        } else {
-            BinaryOperator<Double> binaryOperator = getBinaryOperator(model.operator);
-            if (binaryOperator != null) {
-                if (model.operand2 == null) {
-                    model.operand2 = getOperand(model.operandString);
-                    model.operandString = "";
-                }
-                model.operand1 = binaryOperator.apply(model.operand1, model.operand2);
-                model.operator = null;
-                model.operand2 = null;
-            } else {
-                throw new IllegalStateException("Unknown operator: " + model.operator);
-            }
+        BinaryOperator<Double> binaryOperator = getBinaryOperator(model.operator);
+        if (binaryOperator == null) {
+            throw new IllegalStateException("Unknown operator: " + model.operator);
         }
+        if (model.operand2 == null) {
+            model.operand2 = getOperand(model.operandString);
+            model.operandString = "";
+        }
+        model.operand1 = binaryOperator.apply(model.operand1, model.operand2);
+        model.operator = null;
+        model.operand2 = null;
         updateView();
     }
 }

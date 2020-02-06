@@ -17,8 +17,6 @@ class CalcState {
     }
 }
 
-type unaryOperator = (n : number) => number;
-
 type binaryOperator = (n1 : number, n2 : number) => number;
 
 export class CalcComponent extends React.Component<CalcProps, CalcState>  {
@@ -41,6 +39,9 @@ export class CalcComponent extends React.Component<CalcProps, CalcState>  {
     }
 
     appendToOperandString(label : string) {
+        if (this.model.operand1 && (! this.model.operator)) {
+            throw new Error("cannot specify operand 2, before the operator");
+        }
         this.model.operandString += label;
         this.updateView();
     }
@@ -57,9 +58,6 @@ export class CalcComponent extends React.Component<CalcProps, CalcState>  {
             this.compute();
         }
         this.model.operator = operator;
-        if (this.getUnaryOperator(operator)) {
-            this.compute();
-        }
         this.model.operandString = "";
         this.updateView();
 
@@ -76,41 +74,23 @@ export class CalcComponent extends React.Component<CalcProps, CalcState>  {
         }
     }
 
-    getUnaryOperator(operatorString : string | undefined) : unaryOperator | undefined {
-    	switch (operatorString) {
-        case "sqrt": return n => Math.sqrt(n);
-        default: return undefined;
-        }
-    }
-
     compute() {
-        var unaryOperator = this.getUnaryOperator(this.state.operator);
-        if (unaryOperator) {
-            if (this.model.operand1 == null) {
-                this.model.operand1 = this.getOperand(this.model.operandString);
-                this.model.operandString = "";
-            }
-            this.model.operand1 = unaryOperator(this.model.operand1);
-        } else {
-            var binaryOperator = this.getBinaryOperator(this.model.operator);
-            if (binaryOperator) {
-                if (this.model.operand2 == null) {
-                    this.model.operand2 = this.getOperand(this.model.operandString);
-                    this.model.operandString = "";
-                }
-                this.model.operand1 = binaryOperator(this.model.operand1 as number, this.model.operand2);
-                this.model.operator = undefined;
-                this.model.operand2 = undefined;
-            } else {
-                throw new Error("Unknown operator: " + this.model.operator);
-            }
+        var binaryOperator = this.getBinaryOperator(this.model.operator);
+        if (! binaryOperator) {
+            throw new Error("Unknown operator: " + this.model.operator);
         }
+        if (this.model.operand2 == null) {
+            this.model.operand2 = this.getOperand(this.model.operandString);
+            this.model.operandString = "";
+        }
+        this.model.operand1 = binaryOperator(this.model.operand1 as number, this.model.operand2);
+        this.model.operator = undefined;
+        this.model.operand2 = undefined;
         this.updateView();
     }
 
     render() {
         var appendToOperandString = (event : React.MouseEvent<HTMLButtonElement>) => {
-            console.log("appendToOperandString: " + event.currentTarget.value);
             this.appendToOperandString(event.currentTarget.value);
         };
         var setOperator = (event : React.MouseEvent<HTMLButtonElement>) => {
