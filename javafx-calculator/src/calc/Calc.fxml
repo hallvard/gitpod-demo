@@ -22,10 +22,10 @@
  	<Button text="1" onAction="#appendToOperandString" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
  	<Button text="2" onAction="#appendToOperandString" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
  	<Button text="3" onAction="#appendToOperandString" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
- 	<Button text="*" onAction="#setOperator" GridPane.rowIndex="5" GridPane.columnIndex="3"/>
+ 	<Button text=" " GridPane.rowIndex="5" GridPane.columnIndex="3"/>
  	
  	<Button text="0" onAction="#appendToOperandString" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
- 	<Button text="." onAction="#appendToOperandString" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+ 	<Button text=" " GridPane.rowIndex="6" GridPane.columnIndex="1"/>
  	<Button text="=" onAction="#compute" GridPane.rowIndex="6" GridPane.columnIndex="2"/>
- 	<Button text="/" onAction="#setOperator" GridPane.rowIndex="6" GridPane.columnIndex="3"/>
+ 	<Button text=" " GridPane.rowIndex="6" GridPane.columnIndex="3"/>
 </GridPane>

@@ -72,7 +72,7 @@ public class CalcController {
     @FXML
     private void appendToOperandString(ActionEvent actionEvent) {
         if (model.operand1 != null && model.operator == null) {
-            throw new IllegalStateException("cannot specify operand 2, before the operator");
+            throw new IllegalStateException("cannot specify operand 2 before the operator");
         }
         String label = getActionEventString(actionEvent);
         model.operandString += label;
@@ -101,9 +101,6 @@ public class CalcController {
     	switch (operatorString) {
     	case "+": return (n1, n2) -> n1 + n2;
     	case "-": return (n1, n2) -> n1 - n2;
-    	case "*": return (n1, n2) -> n1 * n2;
-    	case "/": return (n1, n2) -> n1 / n2;
-    	case "^": return (n1, n2) -> Math.pow(n1, n2);
         default: return null;
         }
     }

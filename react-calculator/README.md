@@ -1,44 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React calculator
 
-## Available Scripts
+This project contains a simple React calculator, similar to the [JavaFX calculator](../javafx-calculator/README.md).
+There are text fields for the current operands and operator and buttons for entering digits and operators.
 
-In the project directory, you can run:
+As an example it highlights
 
-### `yarn start`
+- the use of **npm** for configuring the project
+- **typescript** and **react** for making a web app shown in the `Preview` pane
+- running a development server with instant refresh of app
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The implementation is a straight-forward port of the [JavaFX app](../javafx-calculator/README.md), so may not be according to best typescript and react practice.
+It does, however, show important similarities between **JavaFX+FXML** and **react**:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- explicit model of app UI state: `CalcState` in [CalcComponent.tsx](src/CalcComponent.tsx) and `CalcModel` in [CalcController.java](../javafx-calculator/src/calc/CalcController.java)
+- markup for UI structure and contents: `render` method in [CalcComponent.tsx](src/CalcComponent.tsx) and [Calc.fxml](../javafx-calculator/src/calc/Calc.fxml)
+- controller class for linking state and UI and implementing its behavior: [CalcComponent.tsx](src/CalcComponent.tsx) and [CalcController.java](../javafx-calculator/src/calc/CalcController.java)
+- a similar update cycle, where events trigger state updates and re-rendering og UI
 
-### `yarn test`
+## Configuration
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The project is an npm project, initially configured with `npx create-react-app react-calculator --template typescript`.
+See [original README](create-react-app.md) for details. 
 
-### `yarn build`
+## Usage
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Compile and build with `yarn build` in the Terminal.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Run a development server for the app on port `3000` with `yarn start`. Open the `Open Ports` with `View > Open Ports`in the menubar
+and select `Expose`and then `Open Preview` or open another browser tab or window.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Similar to the [JavaFX counterpart](../javafx-calculator/README.md), the implementation isn't complete:
 
-### `yarn eject`
+- The display of the operands and the operator doesn't work properly.
+- The calculator has some empty buttons intended for the decimal point (`.`) `*`and `/` operators, add them!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This will require editing [CalcComponent.tsx](src/CalcComponent.tsx).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Try to add the power (`^`) operator, too!

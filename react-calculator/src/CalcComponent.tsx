@@ -40,7 +40,7 @@ export class CalcComponent extends React.Component<CalcProps, CalcState>  {
 
     appendToOperandString(label : string) {
         if (this.model.operand1 && (! this.model.operator)) {
-            throw new Error("cannot specify operand 2, before the operator");
+            throw new Error("cannot specify operand 2 before the operator");
         }
         this.model.operandString += label;
         this.updateView();
@@ -67,9 +67,6 @@ export class CalcComponent extends React.Component<CalcProps, CalcState>  {
     	switch (operatorString) {
     	case "+": return (n1, n2) => n1 + n2;
     	case "-": return (n1, n2) => n1 - n2;
-    	case "*": return (n1, n2) => n1 * n2;
-    	case "/": return (n1, n2) => n1 / n2;
-    	case "^": return (n1, n2) => Math.pow(n1, n2);
         default: return undefined;
         }
     }
@@ -104,9 +101,12 @@ export class CalcComponent extends React.Component<CalcProps, CalcState>  {
         return (
             <div className="App">
                 <table>
-                    <tr><td colSpan={4}>{ this.state.operand1 ? this.state.operand1 : this.state.operandString }</td></tr>
-                    <tr><td colSpan={4}>{ this.state.operator ? this.state.operator : "" }</td></tr>
-                    <tr><td colSpan={4}>{ this.state.operand2 ? this.state.operand2 : (this.state.operand1 ? this.state.operandString : "") }</td></tr>
+                    <!-- Fix the display of the operands, so the state displays correctly -->
+                    <!-- When operand1 is undefined, the operandString should be shown instead -->
+                    <tr><td colSpan={4}>{ this.state.operand1 }</td></tr>
+                    <tr><td colSpan={4}>{ this.state.operator }</td></tr>
+                    <!-- When operand2 is undefined, something else should be shown, but what? -->
+                    <tr><td colSpan={4}>{ this.state.operand2 }</td></tr>
                     <tr>
                         <button value="7" onClick={ appendToOperandString }>7</button>
                         <button value="8" onClick={ appendToOperandString }>8</button>
@@ -123,13 +123,13 @@ export class CalcComponent extends React.Component<CalcProps, CalcState>  {
                         <button value="1" onClick={ appendToOperandString }>1</button>
                         <button value="2" onClick={ appendToOperandString }>2</button>
                         <button value="3" onClick={ appendToOperandString }>3</button>
-                        <button value="*" onClick={ setOperator }>*</button>
+                        <button> </button>
                     </tr>
                     <tr>
                         <button value="0" onClick={ appendToOperandString }>0</button>
-                        <button value="." onClick={ appendToOperandString }>.</button>
+                        <button> </button>
                         <button value="=" onClick={ compute }>=</button>
-                        <button value="/" onClick={ setOperator }>/</button>
+                        <button> </button>
                     </tr>
                 </table>
             </div>
